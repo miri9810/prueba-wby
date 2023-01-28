@@ -1,17 +1,17 @@
 from rest_framework import serializers
-from .models import Codigos, Municipios, Estados
+from .models import Codigos, Estados, Municipios
 
 
 class EstadoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Estados
-        exclude = ('status_delete', )
+        fields = ('estado', 'user')
 
 
-class MunicipioSerialier(serializers.ModelSerializer):
+class MunicipioSerializer(serializers.ModelSerializer):
     class Meta: 
         model = Municipios
-        fields = ('municipios', 'estados')
+        fields = ('municipio', 'estado', 'user')
 
         def to_representation(self, instance):
             response = super().to_representation(instance)
@@ -19,10 +19,10 @@ class MunicipioSerialier(serializers.ModelSerializer):
             return response
 
 
-class MoveImgSerializer(serializers.ModelSerializer):
+class CodigoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Move
-        fields = ('codigo', 'colonia', 'municipio', 'estado')
+        model = Codigos
+        fields = ('codigo', 'colonia', 'municipio', 'estado', 'user')
 
     def create(self, validated_data):
         codigo = Codigos.objects.create(

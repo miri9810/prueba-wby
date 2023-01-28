@@ -1,4 +1,5 @@
 from django.db import models
+from users.models import User
 
 # Create your models here.
 
@@ -38,19 +39,31 @@ class Estados(models.Model):
             ('32', 'Zacatecas')
         ]
     estado = models.CharField(choices=opciones, max_length=255, verbose_name='nombre del estado')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     status_delete = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'estados'
 
+    def __str__(self):
+        return self.estado
+
+
+
 
 class Municipios(models.Model):
     municipio = models.CharField(max_length=255, verbose_name='nombre del municipio')
     estado = models.ManyToManyField(Estados)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     status_delete = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'municipios'
+
+    def __str__(self):
+        return self.municipio
+
+
 
 
 class Codigos(models.Model):
@@ -58,9 +71,11 @@ class Codigos(models.Model):
     colonia = models.CharField(max_length=255, verbose_name='colonia')
     municipio = models.ManyToManyField(Municipios)
     estado = models.ManyToManyField(Estados)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     status_delete = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'codigos'
 
-
+    def __str__(self):
+        return self.colonia

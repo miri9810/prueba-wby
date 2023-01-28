@@ -2,26 +2,6 @@ from django.db import models
 
 # Create your models here.
 
-class Codigos(models.Model):
-    codigo = models.IntegerField()
-    colonia = models.CharField(max_length=255, verbose_name='colonia')
-    municipio = models.ManyToManyField(Municipios)
-    estado = models.ManyToManyField(Estados)
-    status_delete = models.BooleanField(default=False)
-
-    class Meta:
-        db_table = 'codigos'
-
-
-class Municipios(models.Model):
-    municipio = models.CharField(max_length=255, verbose_name='nombre del municipio')
-    estado = models.ManyToManyField(Estados)
-    status_delete = models.BooleanField(default=False)
-
-    class Meta:
-        db_table = 'municipios'
-
-
 class Estados(models.Model):
     opciones = [
             ('01','Aguascalientes'),
@@ -62,3 +42,25 @@ class Estados(models.Model):
 
     class Meta:
         db_table = 'estados'
+
+
+class Municipios(models.Model):
+    municipio = models.CharField(max_length=255, verbose_name='nombre del municipio')
+    estado = models.ManyToManyField(Estados)
+    status_delete = models.BooleanField(default=False)
+
+    class Meta:
+        db_table = 'municipios'
+
+
+class Codigos(models.Model):
+    codigo = models.IntegerField()
+    colonia = models.CharField(max_length=255, verbose_name='colonia')
+    municipio = models.ManyToManyField(Municipios)
+    estado = models.ManyToManyField(Estados)
+    status_delete = models.BooleanField(default=False)
+
+    class Meta:
+        db_table = 'codigos'
+
+

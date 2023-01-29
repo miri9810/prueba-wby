@@ -94,3 +94,5 @@ La finalidad es tener el manejo y control de Códigos Postales de México
 # ¡¡¡   EXTRA   !!!
 
 - Descargué el archivo excel de los CP, algo con lo que no había trabajado, por lo que no sabía como importar los datos, así que opté por cambiar los datos, pero sería un problema guardar los datos de 32 hojas diferentes, así que solo hice unas pruebas con unos cuantos, solo le puse una capa de seguridad que fue con autenticacion mediante SIMPLEJWT, por lo que es muy sencillo de levantar, pero si tiene faltas muy grandes, también intenté crear el contenedor, pero no logré completar la tarea. 
+
+![Prueba en Postman](/postman.png)
